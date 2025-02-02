@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YeCoin: The Coin That Never Drops Out</title>
+  <!-- Google Fonts (optional) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ----- CSS ----- */
+
+    /* GENERAL RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f6f6f6;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* NAVIGATION */
+    .navbar {
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #333;
+    }
+    .nav-right a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+    }
+    .nav-right a:hover {
+      color: #FF8C00; /* Something bright & fun */
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      height: 90vh;
+      background: url('https://via.placeholder.com/1920x1080?text=Kanye+Backdrop')
+        center center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      background: #FF8C00;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #e07500;
+    }
+    .cta-button a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    /* MEME SPOTLIGHT */
+    .meme-spotlight {
+      background: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .meme-spotlight h2 {
+      margin-bottom: 2rem;
+    }
+    .meme-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .meme-item {
+      background: #fafafa;
+      padding: 1rem;
+      border-radius: 8px;
+      width: 200px;
+    }
+    .meme-item img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .meme-caption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* SECTION CONTENT LAYOUT */
+    .section-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .section-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    /* ABOUT */
+    .about {
+      background: #f0f0f0;
+    }
+    .album-eras {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+    .era-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 5px;
+      flex: 0 1 200px;
+    }
+    .era-card h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* TOKENOMICS */
+    .tokenomics {
+      background: #fff;
+    }
+    .tokenomics-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem auto;
+      gap: 1rem;
+    }
+    .info-block {
+      background: #f6f6f6;
+      padding: 1rem;
+      border-radius: 5px;
+      min-width: 200px;
+    }
+    .info-block h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* ROADMAP */
+    .roadmap {
+      background: #f0f0f0;
+    }
+    .roadmap-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .step {
+      background: #fff;
+      border-radius: 5px;
+      padding: 1rem;
+      flex: 0 1 200px;
+    }
+    .step h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* NFT */
+    .nft {
+      background: #fff;
+    }
+    .nft-list {
+      text-align: left;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+
+    /* COMMUNITY */
+    .community {
+      background: #f0f0f0;
+    }
+    .community-links {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .community-btn {
+      background: #FF8C00;
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .community-btn:hover {
+      background: #e07500;
+    }
+
+    /* HOW TO BUY */
+    .how-to-buy {
+      background: #fff;
+    }
+    .how-to-buy ol {
+      text-align: left;
+      display: inline-block;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .buy-button {
+      margin-top: 1rem;
+    }
+    .buy-button a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .disclaimer {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 1rem;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 2rem;
+    }
+    .footer p {
+      line-height: 1.4;
+    }
+
+    /* MEDIA QUERIES (Responsive) */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-right {
+        margin-top: 1rem;
+      }
+      .nav-right a {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+      }
+      .tokenomics-details,
+      .roadmap-steps,
+      .album-eras,
+      .meme-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ----- HTML Markup ----- -->
+
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="#" class="logo">YeCoin</a>
+    </div>
+    <nav class="nav-right">
+      <a href="#about">About</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#nft">NFTs</a>
+      <a href="#community">Community</a>
+      <a href="#buy">How To Buy</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>YeCoin</h1>
+      <p class="subtitle">The Coin That Never Drops Out</p>
+      <button class="cta-button" onclick="scrollToSection('buy')">Buy YeCoin</button>
+    </div>
+  </section>
+
+  <!-- MEME SPOTLIGHT (Gallery) -->
+  <section class="meme-spotlight">
+    <h2>Meme Spotlight</h2>
+    <div class="meme-gallery" id="memeGallery">
+      <div class="meme-item">
+        <img src="https://via.placeholder.com/200?text=KanyeMeme1" alt="Meme 1" />
+        <p class="meme-caption">"In Ye We Trust"</p>
+      </div>
+      <div class="meme-item">
+        <img src="https://via.placeholder.com/200?text=KanyeMeme2" alt="Meme 2" />
+        <p class="meme-caption">"I'm not the next Satoshi, I'm the first YeCoin!"</p>
+      </div>
+      <div class="meme-item">
+        <img src="https://via.placeholder.com/200?text=KanyeMeme3" alt="Meme 3" />
+        <p class="meme-caption">“HODL like a College Dropout.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about">
+    <div class="section-content">
+      <h2>About YeCoin</h2>
+      <p>
+        Inspired by the artistry and unpredictability of Kanye West,
+        <strong>YeCoin</strong> is a meme-driven crypto token that blends the hustle,
+        creativity, and flair of Ye with the power of decentralized finance.
+        <br /><br />
+        <em
+          >Disclaimer: YeCoin is not affiliated with Kanye West or
+          associated trademarks—this is purely a parody project.
+        </em>
+      </p>
+    </div>
+
+    <!-- Quick Kanye Album-Era Theming -->
+    <div class="album-eras">
+      <div class="era-card">
+        <h3>The College Dropout</h3>
+        <p>Where it all began. Our rebellious, experimental launch phase.</p>
+      </div>
+      <div class="era-card">
+        <h3>Late Registration</h3>
+        <p>Community expansion, new features & governance.</p>
+      </div>
+      <div class="era-card">
+        <h3>Graduation</h3>
+        <p>Major upgrades, exchange listings, and mainstream adoption.</p>
+      </div>
+      <div class="era-card">
+        <h3>My Beautiful Dark Twisted Fantasy</h3>
+        <p>NFT art & advanced DeFi integrations for next-level creativity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENOMICS SECTION -->
+  <section class="tokenomics" id="tokenomics">
+    <div class="section-content">
+      <h2>My Beautiful Dark Twisted Tokenomics</h2>
+      <div class="tokenomics-details">
+        <div class="info-block">
+          <h3>Total Supply</h3>
+          <p>1,000,000,000 $YE</p>
+        </div>
+        <div class="info-block">
+          <h3>Yeezus Burn</h3>
+          <p>2% of each transaction is burned forever</p>
+        </div>
+        <div class="info-block">
+          <h3>Liquidity</h3>
+          <p>3% auto-liquidity for every transaction</p>
+        </div>
+        <div class="info-block">
+          <h3>Sunday Service Fund</h3>
+          <p>1% of each transaction for marketing & charity</p>
+        </div>
+      </div>
+      <p>
+        Our tokenomics are designed to reward holders, fund ongoing development,
+        and give back to the community—Yeezus style!
+      </p>
+    </div>
+  </section>
+
+  <!-- ROADMAP SECTION -->
+  <section class="roadmap" id="roadmap">
+    <div class="section-content">
+      <h2>Roadmap: From Dropout to Donda</h2>
+      <div class="roadmap-steps">
+        <div class="step">
+          <h3>Phase 1: The College Dropout</h3>
+          <ul>
+            <li>Website & Social Launch</li>
+            <li>Initial Dex Listing</li>
+            <li>Meme Contest</li>
+          </ul>
+        </div>
+        <div class="step">
+          <h3>Phase 2: Late Registration</h3>
+          <ul>
+            <li>Community Governance (Runaway Proposals)</li>
+            <li>First NFT Collection</li>
+            <li>Influencer Marketing Push</li>
+          </ul>
+        </div>
+        <div class="step">
+          <h3>Phase 3: Graduation</h3>
+          <ul>
+            <li>Staking Platform (I Am a God Staking)</li>
+            <li>Sunday Service Charity Donations</li>
+            <li>Listing on Larger Exchanges</li>
+          </ul>
+        </div>
+        <div class="step">
+          <h3>Phase 4: MBDTF Expansion</h3>
+          <ul>
+            <li>Yield-Farming Partnerships</li>
+            <li>NFT Collaborations</li>
+            <li>Cross-Chain Bridges</li>
+          </ul>
+        </div>
+      </div>
+      <p>
+        Our journey is more than just hype—it's about building a community and
+        giving back. Join us on this whirlwind adventure!
+      </p>
+    </div>
+  </section>
+
+  <!-- NFT SECTION -->
+  <section class="nft" id="nft">
+    <div class="section-content">
+      <h2>Bear in the Yeezus Throne: NFT Collections</h2>
+      <p>
+        Each collection is themed after iconic Kanye eras. Own a piece of the meme
+        movement:
+      </p>
+      <ul class="nft-list">
+        <li><strong>College Dropout Bears</strong> – Vintage letterman jackets & playful designs</li>
+        <li><strong>Yeezus God Mode</strong> – Futuristic minimalism & edgy styles</li>
+        <li><strong>MBDTF Surrealism</strong> – Bold color illusions & abstract art</li>
+      </ul>
+      <p>
+        <em>Submit your designs, and they might become official YeCoin NFTs!</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- COMMUNITY SECTION -->
+  <section class="community" id="community">
+    <div class="section-content">
+      <h2>Join the Good Life</h2>
+      <p>
+        From Discord meme battles to Telegram watch parties, our community stays lit.
+        Come vibe with fellow YeCoin hodlers:
+      </p>
+      <div class="community-links">
+        <a href="#" class="community-btn">Discord</a>
+        <a href="#" class="community-btn">Telegram</a>
+        <a href="#" class="community-btn">Twitter/X</a>
+        <a href="#" class="community-btn">Reddit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUY SECTION -->
+  <section class="how-to-buy" id="buy">
+    <div class="section-content">
+      <h2>How to Buy YeCoin</h2>
+      <ol>
+        <li><strong>Step 1:</strong> Create or connect a crypto wallet (MetaMask, etc.).</li>
+        <li><strong>Step 2:</strong> Fund your wallet with the native chain token (ETH or BNB).</li>
+        <li><strong>Step 3:</strong> Visit a DEX (Uniswap or PancakeSwap) and import <em>$YE</em> contract address.</li>
+        <li><strong>Step 4:</strong> Set slippage to accommodate the Yeezus Burn (~5-8%).</li>
+        <li><strong>Step 5:</strong> Swap your tokens for $YE and HODL like a champion.</li>
+      </ol>
+      <button class="cta-button buy-button">
+        <a href="#" target="_blank" rel="noopener noreferrer">Go to DEX</a>
+      </button>
+      <p class="disclaimer">
+        <em>Not financial advice. YeCoin is a meme project; invest responsibly.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>
+      &copy; <span id="year"></span> YeCoin.<br />
+      Inspired by Kanye West, but not affiliated or endorsed. Parody project only.
+    </p>
+  </footer>
+
+  <!-- ----- JavaScript ----- -->
+  <script>
+    // Auto-update the footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth-scroll to a specific section
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  </script>
+</body>
+</html>
